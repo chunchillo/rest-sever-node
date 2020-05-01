@@ -18,7 +18,7 @@ app.post('/usuarios', function (req, res) {
         if ( err ) {
             return res.status(400).json({
                 ok: false,
-                err
+                error: err.message
             });
         }
         res.json({

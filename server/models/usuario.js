@@ -1,4 +1,10 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require('mongoose-unique-validator');
+
+let roles = {
+    values: ['ADMIN_ROLE', 'USER_ROLE'],
+    message: '{VALUE} no es un rol valido'
+}
 
 let Schema = mongoose.Schema;
 
@@ -9,6 +15,7 @@ let usuario_schema = new Schema({
     }
     , email: {
         type: String,
+        unique: true,
         required: [true, 'El correo es necesario']
     }
     , password: {
@@ -21,7 +28,8 @@ let usuario_schema = new Schema({
     }
     , role: {
         type: String,
-        default: 'USER_ROLE'
+        default: 'USER_ROLE',
+        enum: roles
     }
     , estado: {
         type: Boolean,
@@ -32,5 +40,7 @@ let usuario_schema = new Schema({
         default: false
     }
 });
+
+usuario_schema.plugin(uniqueValidator, { message: 'Debe ser único.' });
 
 module.exports = mongoose.model('Usuario', usuario_schema)

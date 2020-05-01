@@ -12,7 +12,8 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
   - Creamos modelo Usuario
     - Nueva carpeta models + usuario.js, gestiona el schema usuario
     - Creación de Usuario
+    - Validaciones personalizada para email y role
 
 - Instalaciones modulos (por orden)
-  - express y body-parser
-  - mongoose
+  - express, body-parser
+  - mongoose, mongoose-unique-validator
