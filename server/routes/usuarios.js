@@ -1,4 +1,6 @@
 const express = require('express')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const Usuario = require("../models/usuario")
 const app = express()
 
@@ -8,10 +10,12 @@ app.get('/usuarios', function (req, res) {
 
 app.post('/usuarios', function (req, res) {
     let body = req.body;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(body.password, salt);
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
-        password: body.password,
+        password: hash,
         role: body.role
     })
     usuario.save( (err, usuario_db) => {
