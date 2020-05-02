@@ -11,7 +11,7 @@ app.get(['/usuarios', '/usuarios/:pagina', '/usuarios/:pagina/:limite'], functio
     pagina = Number(pagina)
     limite = Number(limite)
     let paso = pagina * 5;
-    Usuario.find({}, 'nombre email img')
+    Usuario.find({estado: true}, 'nombre email img estado')
         .skip(paso)
         .limit(limite)
         .exec( (err, usuarios) => {
@@ -21,15 +21,15 @@ app.get(['/usuarios', '/usuarios/:pagina', '/usuarios/:pagina/:limite'], functio
                 error: err.message
             });
         }
-        Usuario.countDocuments({}, (err, cuantos) => {
+        Usuario.countDocuments({estado: true}, (err, cuantos) => {
             res.json({
                 ok: true,
                 usuarios,
                 cuantos
-            })
-        })
-    })
-})
+            });;
+        });;
+    });;
+});;
 
 app.post('/usuarios', function (req, res) {
     let body = req.body;
@@ -51,14 +51,14 @@ app.post('/usuarios', function (req, res) {
         res.json({
             ok: true,
             usuario: usuario_db
-        })
-    })
-})
+        });
+    });
+});
 
 app.put('/usuarios/:id', function (req, res) {
     let id = req.params.id;
     let body = _.pick( req.body, ['nombre', 'email', 'img', 'role', 'estado']);
-    Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true, context: 'query'}, (err, usuario_db) => {
+    Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true, context: 'query'}, (err, usuario) => {
         if ( err ) {
             return res.status(400).json({
                 ok: false,
@@ -67,18 +67,55 @@ app.put('/usuarios/:id', function (req, res) {
         }
         res.json({
             ok: true,
-            usuario: usuario_db
-        })
-    })
-    
-})
+            usuario
+        });
+    });
+});
 
 app.delete('/usuarios/:id', function (req, res) {
     let id = req.params.id;
-    res.json({
-        title: 'DELETE Usuarios',
-        id
-    })
-})
+    // Eliminacion Parcial
+    Usuario.findByIdAndUpdate(id, {estado: false}, {new: true, runValidators: true, context: 'query'}, (err, usuario) => {
+        if ( err ) {
+            return res.status(400).json({
+                ok: false,
+                error: err.message
+            });
+        }
+        if ( !usuario ) {
+            return res.status(400).json({
+                ok: false,
+                error: {
+                    message: 'Usuario no encontrado'
+                }
+            });
+        }
+        res.json({
+            ok: true,
+            usuario
+        });
+    });
+    // Eliminacion Completa
+    // Usuario.findByIdAndRemove(id, (err, usuario) => {
+    //     if ( err ) {
+    //         return res.status(400).json({
+    //             ok: false,
+    //             error: err.message
+    //         });
+    //     }
+    //     if ( !usuario ) {
+    //         return res.status(400).json({
+    //             ok: false,
+    //             error: {
+    //                 message: 'Usuario no encontrado'
+    //             }
+    //         });
+    //     }
+    //     res.json({
+    //         ok: true,
+    //         usuario
+    //     });
+    // });
+});
 
 module.exports = app;

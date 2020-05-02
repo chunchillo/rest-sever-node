@@ -16,6 +16,7 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
     - bcrypt, encriptando la contraseña
     - PUT - Actualizar información del usuario, instalamos underscore
     - GET - Obtener todos los usuarios, total de registros y paginación
+    - DELETE - Borrando un usuario
 
 - Instalaciones modulos (por orden)
   - express, body-parser
