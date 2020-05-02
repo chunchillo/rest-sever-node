@@ -1,6 +1,6 @@
 ## Basic Rest Server Node
 
-Primeros pasos con Rest Server
+Primeros pasos con Rest Server (Mayo 2020)
 App Heroku: https://restserver-blockpc.herokuapp.com/
 
 - Procedimientos varios
@@ -17,9 +17,12 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
     - PUT - Actualizar información del usuario, instalamos underscore
     - GET - Obtener todos los usuarios, total de registros y paginación
     - DELETE - Borrando un usuario
+  - Conexion a MLab con cuenta de mongodb usando mongoCompass
+    - Actualización de paquetes de node ```npm update``` debido a cambios en bcrypt / mongoose
+    - Creacion de variables de entorno para conexión a BD
 
 - Instalaciones modulos (por orden)
   - express, body-parser
   - mongoose, mongoose-unique-validator
-  - bcrypt@4.0.1
+  - bcrypt
   - underscore
