@@ -15,6 +15,7 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
     - Validaciones personalizada para email y role
     - bcrypt, encriptando la contraseña
     - PUT - Actualizar información del usuario, instalamos underscore
+    - GET - Obtener todos los usuarios, total de registros y paginación
 
 - Instalaciones modulos (por orden)
   - express, body-parser
