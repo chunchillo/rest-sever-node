@@ -1,7 +1,6 @@
 ## Basic Rest Server Node
 
 Primeros pasos con Rest Server (Mayo 2020)
-App Heroku: https://restserver-blockpc.herokuapp.com/
 
 - Procedimientos varios
   - Iniciamos express, primeras rutas
