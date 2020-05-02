@@ -1,9 +1,8 @@
 ## Basic Rest Server Node
 
 Primeros pasos con Rest Server (Mayo 2020)
-App Heroku: https://restserver-blockpc.herokuapp.com/
 
-- Procedimientos varios
+### Procedimientos varios
   - Iniciamos express, primeras rutas
     - Creamos carpeta config + config.js, gestiona variables globales
   - Conectamos a DB, usando mongodb
@@ -21,7 +20,7 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
     - Actualización de paquetes de node ```npm update``` debido a cambios en bcrypt / mongoose
     - Creacion de variables de entorno para conexión a BD
 
-- Instalaciones modulos (por orden)
+### Instalaciones modulos (por orden)
   - express, body-parser
   - mongoose, mongoose-unique-validator
   - bcrypt
