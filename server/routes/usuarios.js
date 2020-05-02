@@ -1,8 +1,9 @@
-const express = require('express')
-const bcrypt = require('bcrypt');
+const express    = require('express')
+const bcrypt     = require('bcrypt');
+const _          = require("underscore");
 const saltRounds = 10;
-const Usuario = require("../models/usuario")
-const app = express()
+const Usuario    = require("../models/usuario")
+const app        = express()
 
 app.get('/usuarios', function (req, res) {
     res.json("GET Usuarios")
@@ -34,10 +35,20 @@ app.post('/usuarios', function (req, res) {
 
 app.put('/usuarios/:id', function (req, res) {
     let id = req.params.id;
-    res.json({
-        title: 'PUT Usuarios',
-        id
+    let body = _.pick( req.body, ['nombre', 'email', 'img', 'role', 'estado']);
+    Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true}, (err, usuario_db) => {
+        if ( err ) {
+            return res.status(400).json({
+                ok: false,
+                error: err.message
+            });
+        }
+        res.json({
+            ok: true,
+            usuario: usuario_db
+        })
     })
+    
 })
 
 app.delete('/usuarios/:id', function (req, res) {

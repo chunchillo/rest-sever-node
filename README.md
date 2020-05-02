@@ -11,11 +11,13 @@ App Heroku: https://restserver-blockpc.herokuapp.com/
     - Creamos carpeta router + usuarios.js, gestiona rutas a usuarios
   - Creamos modelo Usuario
     - Nueva carpeta models + usuario.js, gestiona el schema usuario
-    - Creación de Usuario
+    - POST - Creación de Usuario
     - Validaciones personalizada para email y role
     - bcrypt, encriptando la contraseña
+    - PUT - Actualizar información del usuario, instalamos underscore
 
 - Instalaciones modulos (por orden)
   - express, body-parser
   - mongoose, mongoose-unique-validator
   - bcrypt@4.0.1
+  - underscore
