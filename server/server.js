@@ -10,10 +10,14 @@ app.use(bodyParser.json()); // parse application/json
 // Rutas
 const routes = require("./routes/index");
 app.use(routes)
+
+// Mostrando un index
+const path  = require('path');
+const VIEWS = path.join(__dirname, 'public/views');
  
 app.get('/', function (req, res) {
-    //res.send('Hello World')
-    res.json('Rest Server Node')
+    res.sendFile('index.html', { root : VIEWS });
+    //res.json('Rest Server Node')
 })
 
 mongoose.set('useNewUrlParser', true);
