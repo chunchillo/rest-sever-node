@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const usuarios = require('./routes/usuarios')
 
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
-app.use(usuarios)
+
+// Rutas
+const routes = require("./routes/index");
+app.use(routes)
  
 app.get('/', function (req, res) {
     //res.send('Hello World')

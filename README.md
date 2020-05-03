@@ -19,9 +19,15 @@ Primeros pasos con Rest Server (Mayo 2020)
   - Conexion a MLab con cuenta de mongodb usando mongoCompass
     - Actualización de paquetes de node ```npm update``` debido a cambios en bcrypt / mongoose
     - Creacion de variables de entorno para conexión a BD
+  - Autentificación por token - JWT
+    - Creamos archivo de rutas login.js
+    - Generamos token JWT en el login
+    - Protección de token mediante middlewares
+    - Verificar Token y verificación de rol administrador via middlewares
 
 ### Instalaciones modulos (por orden)
   - express, body-parser
   - mongoose, mongoose-unique-validator
   - bcrypt
   - underscore
+  - jsonwebtoken

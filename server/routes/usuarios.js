@@ -1,11 +1,22 @@
-const express    = require('express')
-const bcrypt     = require('bcrypt');
-const _          = require("underscore");
-const saltRounds = 10;
-const Usuario    = require("../models/usuario")
-const app        = express()
+const express           = require('express')
+const bcrypt            = require('bcrypt');
+const _                 = require("underscore");
+const saltRounds        = 10;
+const Usuario           = require("../models/usuario")
+const { verificaToken
+    , verificaRolAdmin } = require("../middlewares/autenticacion")
+const app               = express()
 
-app.get(['/usuarios', '/usuarios/:pagina', '/usuarios/:pagina/:limite'], function (req, res) {
+app.get('/usuario', verificaToken, (req, res) => {
+    return res.json({
+        ok: true,
+        nombre: req.usuario.nombre,
+        email: req.usuario.email,
+        usuario: req.usuario
+    });
+});
+
+app.get(['/usuarios', '/usuarios/:pagina', '/usuarios/:pagina/:limite'], verificaToken, (req, res) => {
     let pagina = req.params.pagina || 0;
     let limite = req.params.limite || 5;
     pagina = Number(pagina)
@@ -26,12 +37,12 @@ app.get(['/usuarios', '/usuarios/:pagina', '/usuarios/:pagina/:limite'], functio
                 ok: true,
                 usuarios,
                 cuantos
-            });;
-        });;
-    });;
-});;
+            });
+        });
+    });
+});
 
-app.post('/usuarios', function (req, res) {
+app.post('/usuarios', [verificaToken, verificaRolAdmin], function (req, res) {
     let body = req.body;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(body.password, salt);
@@ -55,7 +66,7 @@ app.post('/usuarios', function (req, res) {
     });
 });
 
-app.put('/usuarios/:id', function (req, res) {
+app.put('/usuarios/:id', [verificaToken, verificaRolAdmin], function (req, res) {
     let id = req.params.id;
     let body = _.pick( req.body, ['nombre', 'email', 'img', 'role', 'estado']);
     Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true, context: 'query'}, (err, usuario) => {
@@ -72,7 +83,7 @@ app.put('/usuarios/:id', function (req, res) {
     });
 });
 
-app.delete('/usuarios/:id', function (req, res) {
+app.delete('/usuarios/:id', [verificaToken, verificaRolAdmin], function (req, res) {
     let id = req.params.id;
     // Eliminacion Parcial
     Usuario.findByIdAndUpdate(id, {estado: false}, {new: true, runValidators: true, context: 'query'}, (err, usuario) => {
