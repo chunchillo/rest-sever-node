@@ -13,11 +13,11 @@ app.use(routes)
 
 // Mostrando un index
 const path  = require('path');
-const VIEWS = path.join(__dirname, 'public/views');
+const VISTAS = path.resolve(__dirname, '../public/views');
+const RAIZ = path.resolve(__dirname, '../public');
  
 app.get('/', function (req, res) {
-    res.sendFile('index.html', { root : VIEWS });
-    //res.json('Rest Server Node')
+    res.sendFile('index.html', {root: RAIZ});
 })
 
 mongoose.set('useNewUrlParser', true);

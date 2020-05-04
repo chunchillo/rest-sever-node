@@ -24,6 +24,8 @@ Primeros pasos con Rest Server (Mayo 2020)
     - Generamos token JWT en el login
     - Protección de token mediante middlewares
     - Verificar Token y verificación de rol administrador via middlewares
+  - Autenticación con Google SignIn
+    - Validacion de Cuenta Google
 
 ### Instalaciones modulos (por orden)
   - express, body-parser
@@ -31,3 +33,4 @@ Primeros pasos con Rest Server (Mayo 2020)
   - bcrypt
   - underscore
   - jsonwebtoken
+  - google-auth-library
