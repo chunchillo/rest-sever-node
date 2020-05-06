@@ -28,6 +28,8 @@ Primeros pasos con Node JS (Mayo 2020)
     - Validacion de Cuenta Google
   - Categorías, modelo y rutas
   - Productos, modelo y rutas
+  - Upload de archivos
+  - Servir imagenes desde el servidor
 
 ### Instalaciones modulos (por orden)
   - express, body-parser
@@ -36,3 +38,4 @@ Primeros pasos con Node JS (Mayo 2020)
   - underscore
   - jsonwebtoken
   - google-auth-library
+  - express-fileupload
