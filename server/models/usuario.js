@@ -43,9 +43,9 @@ let usuario_schema = new Schema({
 
 usuario_schema.methods.toJSON = function() {
     let user = this;
-    let userObject = user.toObject();
-    delete userObject.password;
-    return userObject;
+    let objeto = user.toObject();
+    delete objeto.password;
+    return objeto;
 }
 
 usuario_schema.plugin(uniqueValidator, { message: 'Debe ser único.' });

@@ -12,8 +12,8 @@ if ( process.env.NODE_ENV === 'local' ) {
 process.env.URLDB = url;
 
 /*  Tiempo de Validación 
-    Tiempo en segundos = 30 dias */
-process.env.EXPIRES_TOKEN = 60 * 60 * 24 * 30;
+    Tiempo en segundos = 48 horas */
+process.env.EXPIRES_TOKEN = '48h';
 
 /*  Seed **/
 process.env.SEED_TOKEN = process.env.SEED_TOKEN || 'este-es-el-seed-dev';

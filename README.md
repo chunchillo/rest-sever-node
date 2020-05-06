@@ -1,6 +1,6 @@
 ## Basic Rest Server Node
 
-Primeros pasos con Rest Server (Mayo 2020)
+Primeros pasos con Node JS (Mayo 2020)
 
 ### Procedimientos varios
   - Iniciamos express, primeras rutas
@@ -26,6 +26,8 @@ Primeros pasos con Rest Server (Mayo 2020)
     - Verificar Token y verificación de rol administrador via middlewares
   - Autenticación con Google SignIn
     - Validacion de Cuenta Google
+  - Categorías, modelo y rutas
+  - Productos, modelo y rutas
 
 ### Instalaciones modulos (por orden)
   - express, body-parser
